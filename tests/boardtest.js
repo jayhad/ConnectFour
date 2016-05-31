@@ -1,6 +1,6 @@
 describe('boardtest', function(){
 	var testBoard;
-	var SIZE = 5;
+	var SIZE = 7;
 	beforeEach(function(){
 		testBoard = new Board(SIZE);
 		testBoard.initializeBoard();
@@ -58,5 +58,13 @@ describe('boardtest', function(){
 	});
 	it('testing toString', function(){
 		testBoard.toString();
+	});
+	it('checkFourCells returns true correctly', function(){
+		expect(testBoard.checkFourCells(1, 1, 1, 1)).to.be.true;
+	});
+	it('checkFourCells returns false correctly', function(){
+		expect(testBoard.checkFourCells(0,0,0,0)).to.be.false;
+		expect(testBoard.checkFourCells(0,1,0,0)).to.be.false;
+		expect(testBoard.checkFourCells(1,2,1,2)).to.be.false;
 	});
 });
