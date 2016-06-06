@@ -3,7 +3,7 @@ describe('boardtest', function(){
 	var SIZE = 7;
 	beforeEach(function(){
 		testBoard = new Board(SIZE);
-		testBoard.initializeBoard();
+		testBoard.initializeGrid();
 	});
 	it('canary is passing', function() {
 		expect(true).to.be.eql(true);
@@ -15,13 +15,13 @@ describe('boardtest', function(){
 		var row = testBoard.createRow();
 		expect(row.length).to.be.eql(SIZE);
 	})
-	it('initializeBoard fills the proper number of rows in', function(){
-		testBoard.board = [];
-		testBoard.initializeBoard();
-		expect(testBoard.board.length).to.be.eql(SIZE);
+	it('initializeGrid fills the proper number of rows in', function(){
+		testBoard.grid = [];
+		testBoard.initializeGrid();
+		expect(testBoard.grid.length).to.be.eql(SIZE);
 	});
 	it('getRow returns correct row', function(){
-		testBoard.board = [
+		testBoard.grid = [
 			[0,0,0],
 			[1,0,0],
 			[0,0,0]
@@ -30,7 +30,7 @@ describe('boardtest', function(){
 		expect(row).to.be.eql([1,0,0]);
 	});
 	it('getCell returns correct cell', function(){
-		testBoard.board = [
+		testBoard.grid = [
 			[0,0,0],
 			[0,1,0],
 			[0,0,0]
@@ -39,12 +39,12 @@ describe('boardtest', function(){
 		expect(cell).to.be.eql(1);
 	});
 	it('setCell sets a cell correctly', function(){
-		testBoard.board = [[0]];
+		testBoard.grid = [[0]];
 		testBoard.setCell(0,0,1);
 		expect(testBoard.getCell(0,0)).to.be.eql(1);
 	});
 	it('insertIntoColumn returns true/false correctly and sets value correctly', function(){
-		testBoard.board = [
+		testBoard.grid = [
 			[0,1,0],
 			[0,1,0],
 			[0,1,0]
@@ -57,7 +57,12 @@ describe('boardtest', function(){
 		expect(success).to.be.true;
 	});
 	it('testing toString', function(){
-		testBoard.toString();
+		testBoard.grid = [
+			[0,1,0],
+			[0,1,0],
+			[0,1,0]
+		];
+		expect(testBoard.toString()).to.be.eql('[[0,1,0],[0,1,0],[0,1,0]]');
 	});
 	it('checkFourCells returns true correctly', function(){
 		expect(testBoard.checkFourCells(1, 1, 1, 1)).to.be.true;
@@ -66,5 +71,145 @@ describe('boardtest', function(){
 		expect(testBoard.checkFourCells(0,0,0,0)).to.be.false;
 		expect(testBoard.checkFourCells(0,1,0,0)).to.be.false;
 		expect(testBoard.checkFourCells(1,2,1,2)).to.be.false;
+	});
+	it('checkHorizantal returns correctly', function(){
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[1,1,0,1,1,1,1],
+		];
+		expect(testBoard.checkHorizantal()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[1,1,1,0,1,1,1],
+		];
+		expect(testBoard.checkHorizantal()).to.be.eql(0);
+	});
+	it('checkVertical returns correctly', function(){
+		testBoard.grid = [
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+		];
+		expect(testBoard.checkVertical()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+		];
+		expect(testBoard.checkVertical()).to.be.eql(0);
+	});
+	it('checkDownRight returns correctly', function(){
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,1,0,0,0],
+			[0,0,0,0,1,0,0],
+			[0,0,0,0,0,1,0],
+			[0,0,0,0,0,0,1],
+		];
+		expect(testBoard.checkDownRight()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,1,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,1,0,0],
+			[0,0,0,0,0,1,0],
+			[0,0,0,0,0,0,1],
+		];
+		expect(testBoard.checkDownRight()).to.be.eql(0);
+	});
+	it('checkDownLeft returns correctly', function(){
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,1,0,0,0],
+			[0,0,1,0,0,0,0],
+			[0,1,0,0,0,0,0],
+			[1,0,0,0,0,0,0],
+		];
+		expect(testBoard.checkDownLeft()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,1,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,1,0,0,0,0],
+			[0,1,0,0,0,0,0],
+			[1,0,0,0,0,0,0],
+		];
+		expect(testBoard.checkDownLeft()).to.be.eql(0);
+	});
+		it('checkWin returns correctly', function(){
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[1,1,1,1,1,0,0],
+		];
+		expect(testBoard.checkWin()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,0,1],
+		];
+		expect(testBoard.checkWin()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,1,0,0,0],
+			[0,0,0,0,1,0,0],
+			[0,0,0,0,0,1,0],
+			[0,0,0,0,0,0,1],
+		];
+		expect(testBoard.checkWin()).to.be.eql(1);
+		testBoard.grid = [
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,2,0,0,0],
+			[0,0,2,0,0,0,0],
+			[0,2,0,0,0,0,0],
+			[2,0,0,0,0,0,0],
+		];
+		expect(testBoard.checkWin()).to.be.eql(2);
+		testBoard.grid = [
+			[1,2,0,1,0,0,0],
+			[0,1,2,0,0,0,0],
+			[0,2,1,1,1,0,0],
+			[2,0,0,2,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+			[0,0,0,0,0,0,0],
+		];
+		expect(testBoard.checkWin()).to.be.eql(0);
 	});
 });

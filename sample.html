@@ -1,9 +1,20 @@
-<html ng-app>
+<html ng-app='boardApp'>
 	<head>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js">
 		</script>
+		<script type="text/javascript" src="app/board.js"></script>
+		<script type="text/javascript" src="src/boardController.js"></script>
+		<link rel="stylesheet" href="sample.css">
 	</head>
 	<body>
-	The value is {{1 + 1}}
+		<table ng-controller="BoardController as game">
+			<caption>{{game.winMessage}}</caption>
+			<tr ng-repeat="row in [0,1,2,3,4,5,6]">
+				<td ng-repeat="col in [0,1,2,3,4,5,6]" ng-click="game.click(col, row)">
+					<img ng-src={{game.board.getCellImg(col,row)}} alt="Description" />
+				</td>
+			</tr>
+		</table>
+	<div></div>
 	</body>
 </html>
