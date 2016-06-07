@@ -5,6 +5,12 @@ var BoardController = function(){
 	controller.board.initializeGrid();
 	controller.player = 1;
 	controller.winMessage = "Good luck!\r\nPlayer: " + controller.player;
+	controller.selectedCol = null;
+
+	var setSelectedCol = function(index){
+		controller.selectedCol = index;
+	}
+
 
 	var click = function(x,y){
 		controller.board.insertIntoColumn(x,controller.player);
@@ -18,7 +24,9 @@ var BoardController = function(){
 	}
 
 
+
 	controller.click = click;
+	controller.setSelectedCol = setSelectedCol;
 }
 
 angular.module('boardApp', [])

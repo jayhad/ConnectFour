@@ -57,9 +57,9 @@ Board.prototype.getCellImg = function(x,y){
 		case 0:
 			return "./images/emptyCell.png";
 		case 1:
-			return "./images/xCell.png";;
+			return "./images/xCell.png";
 		case 2:
-			return "./images/oCell.png";;
+			return "./images/oCell.png";
 	}
 }
 

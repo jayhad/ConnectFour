@@ -10,7 +10,10 @@
 		<table ng-controller="BoardController as game">
 			<caption>{{game.winMessage}}</caption>
 			<tr ng-repeat="row in [0,1,2,3,4,5,6]">
-				<td ng-repeat="col in [0,1,2,3,4,5,6]" ng-click="game.click(col, row)">
+				<td ng-repeat="col in [0,1,2,3,4,5,6]" 
+				ng-click="game.click(col, row)"
+				ng-class="{'selected':col==game.selectedCol}"
+				ng-mouseover="game.setSelectedCol(col)">
 					<img ng-src={{game.board.getCellImg(col,row)}} alt="Description" />
 				</td>
 			</tr>
