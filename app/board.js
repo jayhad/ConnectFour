@@ -57,22 +57,12 @@ Board.prototype.getCellImg = function(x,y){
 		case 0:
 			return "./images/emptyCell.png";
 		case 1:
-			return "./images/xCell.png";
+			return "./images/p1Cell.png";
 		case 2:
-			return "./images/oCell.png";
+			return "./images/p2Cell.png";
 	}
 }
 
-Board.prototype.getImgTag = function(cell, x, y){
-	switch(cell){
-		case 0:
-			return '<img src="../images/emptyCell.png" x=' + x +' y=' + y + '>';
-		case 1:
-			return '<img src="../images/shipCell.png" x=' + x +' y=' + y + '>';
-		case 2:
-			return '<img src="../images/hitCell.png" x=' + x +' y=' + y + '>';
-	}
-}
 
 // //checks for any occurence of matching 4-in-a-row nonzero entries
 // //returns 0 for no winner, or player # (1 or 2) if that player has 4 in a row

@@ -14,7 +14,7 @@
 				ng-click="game.click(col, row)"
 				ng-class="{'selected':col==game.selectedCol}"
 				ng-mouseover="game.setSelectedCol(col)">
-					<img ng-src={{game.board.getCellImg(col,row)}} alt="Description" />
+					<img ng-src="{{game.board.getCellImg(col,row)}}" alt="{{col}},{{row}}" />
 				</td>
 			</tr>
 		</table>
