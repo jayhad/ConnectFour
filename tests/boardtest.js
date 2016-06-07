@@ -44,17 +44,9 @@ describe('boardtest', function(){
 		expect(testBoard.getCell(0,0)).to.be.eql(1);
 	});
 	it('insertIntoColumn returns true/false correctly and sets value correctly', function(){
-		testBoard.grid = [
-			[0,1,0],
-			[0,1,0],
-			[0,1,0]
-		];
-		testBoard.size = 3;
-		var success = testBoard.insertIntoColumn(1, 1);
-		expect(success).to.be.false;
-		var success = testBoard.insertIntoColumn(0, 1);
-		expect(testBoard.getCell(0,2)).to.be.eql(1);
-		expect(success).to.be.true;
+		var bool = testBoard.insertIntoColumn(0,1);
+		expect(bool).to.be.true;
+		expect(testBoard.getCell(0,6)).to.be.eql(1);
 	});
 	it('testing toString', function(){
 		testBoard.grid = [
@@ -98,10 +90,10 @@ describe('boardtest', function(){
 		testBoard.grid = [
 			[0,0,0,0,0,0,1],
 			[0,0,0,0,0,0,1],
-			[0,0,0,0,0,0,0],
-			[0,0,0,0,0,0,1],
-			[0,0,0,0,0,0,1],
-			[0,0,0,0,0,0,1],
+			[0,0,0,0,0,1,1],
+			[0,0,0,0,0,1,1],
+			[0,0,0,0,0,1,1],
+			[0,0,0,0,0,1,1],
 			[0,0,0,0,0,0,1],
 		];
 		expect(testBoard.checkVertical()).to.be.eql(1);

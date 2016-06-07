@@ -24,11 +24,11 @@ Board.prototype.getRow = function(y){
 }
 
 Board.prototype.getCell = function(x,y){
-	return this.grid[x][y];
+	return this.grid[y][x];
 }
 
 Board.prototype.setCell = function(x, y, value){
-	this.grid[x][y] = value;
+	this.grid[y][x] = value;
 }
 
 //inserts value {{player}} onto lowest nonempty cell in {{column}}
@@ -90,10 +90,10 @@ Board.prototype.checkWin = function(){
 
 Board.prototype.checkHorizantal = function(){
 	for(y = 0; y < this.size; y++){
+		var row = this.getRow(y);
 		for(x = 0; x <= this.size - this.winningLen; x++){
-			if(this.checkFourCells(this.getCell(x,y), this.getCell(x+1, y), 
-				this.getCell(x+2, y), this.getCell(x+3, y))){
-				return this.getCell(x,y);
+			if(this.checkFourCells(row[x], row[x+1], row[x+2], row[x+3])){
+				return row[x];
 			}
 		}
 	}
