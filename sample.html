@@ -7,7 +7,8 @@
 		<link rel="stylesheet" href="sample.css">
 	</head>
 	<body>
-		<table ng-controller="BoardController as game">
+		<table ng-controller="BoardController as game"
+			   ng-class="{'selected': game.player==0}">
 			<caption>{{game.winMessage}}</caption>
 			<tr ng-repeat="row in [0,1,2,3,4,5,6]">
 				<td ng-repeat="col in [0,1,2,3,4,5,6]" 

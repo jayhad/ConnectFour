@@ -17,6 +17,7 @@ var BoardController = function(){
 		controller.player = (controller.player == 1) ? 2 : 1;
 		var winner = controller.board.checkWin();
 		if(winner){
+			controller.player = 0;
 			controller.winMessage = "Winner! Player: " + winner;
 		}else{
 			controller.winMessage = "Good luck!\r\nPlayer: " + controller.player;
